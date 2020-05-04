@@ -11,7 +11,7 @@
 	$result=mysqli_query($connect,$query);
 
 	class KhachHang
-	{
+	{ 
 		function KhachHang($TimeCreate,$IDBooking)
 		{
 			$this->IDbooking=$IDBooking;
