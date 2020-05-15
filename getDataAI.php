@@ -2,33 +2,34 @@
 	require "dbConBook.php";
 	//require "checkLichTrinh.php";
 
-	$IDphim=$_POST['IDPhimPost'];
+	// $IDphim=$_POST['IDPhimPost'];
 	//$IDphim='338762';//////////$_POST['IDphim'];//////'338762';////$_POST['IDphim'];//'338762';//$_GET['IDphim'];//'338762';//$_POST['IDphim'];//'338762'; //$_POST['TenDangNhapKH'];
-	$query="SELECT IDTheLoai,Rate FROM theloaiphim a,phim b WHERE a.IDphim='".$IDphim."' AND a.IDphim=b.IDphim  ";
+	$query="SELECT IDKhachHang,IDTheLoai,Rate FROM data_ai ";
 
 	$result=mysqli_query($connect,$query);
 
 	
-	class IDTheLoai
+	class AI
 	{
-		function IDTheLoai($IDTheLoai,$Rate)
+		function AI($IDKhachHang,$IDTheLoai,$Rate)
 		{
 			
+			$this->idkhachhang=$IDKhachHang;
 			$this->idtheloai=$IDTheLoai;
 			$this->rate=$Rate;
 			
 		}
 	}
 			
-	$mangIDTheLoai=array();
+	$mangAI=array();
 					
 
 	while ($row=mysqli_fetch_assoc($result)) {
-		array_push($mangIDTheLoai, new IDTheLoai($row['IDTheLoai'],$row['Rate']));
+		array_push($mangAI, new AI($row['IDKhachHang'],$row['IDTheLoai'],$row['Rate']));
 			
 	}
 	
-	echo json_encode($mangIDTheLoai);
+	echo json_encode($mangAI);
 			
 		
 
